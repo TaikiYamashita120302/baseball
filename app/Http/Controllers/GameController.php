@@ -35,4 +35,17 @@ class GameController extends Controller
         return redirect('/games');
         
     }
+    
+    public function edit(Game $game, Place $place, Team $team){#$game は以前入力していたgameデータだから、createには、'Game $game'がない
+        
+        return view('games/edit')->with(['game' => $game])->with(['places' => $place->get()]) -> with(['teams' => $team->get()]);
+        
+    }
+    
+    public function update(Request $request, Game $game){
+        $input = $request['game'];
+        $game->fill($input)->save();
+        return redirect('/games/' . $game->id);
+    }
+    
 }

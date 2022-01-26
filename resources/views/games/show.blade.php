@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Posts</title>
+        <title>試合詳細画面</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="/css/app.css">
@@ -24,6 +24,12 @@
             </div>
             
         </div>
+        
+        <p class="edit">
+            [<a href="/games/{{ $game->id }}/edit">
+                試合投稿編集
+            </a>]
+        </p>
         
         <div class="footer">
             <a href="/games">戻る</a>
