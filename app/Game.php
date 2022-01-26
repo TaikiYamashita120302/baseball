@@ -22,9 +22,16 @@ class Game extends Model{
         return $this->belongsTo('App\Team','team_id2');
     }
     
-    public function getPaginateByLimit(int $limit_count = 5){
+    public function getPaginateByLimit(int $limit_count = 4){
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
+    protected $fillable = [
+    'date',
+    'time',
+    'place_id',
+    'team_id1',
+    'team_id2',
+    ];
         
 }

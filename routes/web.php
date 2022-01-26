@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'GameController@index');
+Route::get('/games', 'GameController@index');
+Route::get('/games/create', 'GameController@create');
+Route::post('/games', 'GameController@store');
 Route::get('/posts', 'PostController@index');
 Route::get('/posts/create', 'PostController@create');
 Route::get('/posts/{post}', 'PostController@show');

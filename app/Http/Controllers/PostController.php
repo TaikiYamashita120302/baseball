@@ -22,6 +22,6 @@ class PostController extends Controller
     public function store(Request $request, Post $post){#$requestで一旦ユーザーのデータを受け取る。 $postは空のpostインスタンス 
         $input = $request['post'];#$request['post']を利用すると、postをキー（データのカラム）にもつリクエストパラメータを取得することができる。
         $post->fill($input)->save();#先ほどまで空だったPostインスタンスのプロパティを受け取ったキーごとに上書き
-        return redirect('/posts/' . $post->id);
+        return redirect('/posts/' . $post->id);#/posts/1 のようにidを取得して記事詳細画面に行く
     }
 }
