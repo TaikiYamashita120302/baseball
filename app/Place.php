@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Place extends Model
 {
     public function games(){
-        return $this->hasMany('App\game');
+        return $this->hasMany('App\Game');
     }
     
     public function team(){
-        return $this->belongTo('App\Team');
+        return $this->belongsTo('App\Team');
     }
 }
