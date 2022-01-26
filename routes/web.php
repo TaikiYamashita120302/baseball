@@ -12,9 +12,9 @@
 */
 
 Route::get('/games', 'GameController@index');
-Route::get('/games/{game}', 'GameController@show');
 Route::get('/games/create', 'GameController@create');
 Route::post('/games', 'GameController@store');
+Route::get('/games/{game}', 'GameController@show');
 Route::get('/games/{game}/edit', 'GameController@edit');
 Route::put('/games/{game}', 'GameController@update');
 

@@ -3,7 +3,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>Game</title>
+        <title>トップページ</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
@@ -17,6 +17,13 @@
         
         
         <div class='games'>
+        
+        <form action="/games" method="GET"> 
+            <input type="date" name="search_date"></input> <!--カレンダー、日付検索機能-->
+            <input type="submit" value="検索">
+            
+        </form>
+        
             @foreach($games as $game)
                 <div class='game'>
                     <h2 class='date'>
@@ -27,9 +34,7 @@
             @endforeach
         </div>
         
-        <div class='paginate'>
-            {{ $games->links() }}
-        </div>
+        
         
     </body>
 </html>

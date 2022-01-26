@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Game extends Model{
     
@@ -22,8 +23,14 @@ class Game extends Model{
         return $this->belongsTo('App\Team','team_id2');
     }
     
-    public function getPaginateByLimit(int $limit_count = 4){
-        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    public function getPaginateByLimit(int $limit_count = 10){
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count); #現在使ってはいない。
+    }
+    
+    public function getSearchByDate($search_date){
+        return DB::table('games')
+                ->whereDate('date', $search_date)#第一引数がカラムで第二引数が比較したい日付
+                ->get();
     }
     
     protected $fillable = [

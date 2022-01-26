@@ -11,9 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
 {
-    public function index(Game $game){
+    public function index(Game $game, Request $request){
         
-        return view('games/index') -> with(['games' => $game->getPaginateByLimit()]);
+        $search_date = $request->input('search_date'); #カレンダー、日付検索機能で入力した日付>
+        
+        return view('games/index') -> with(['games' => $game->getSearchByDate($search_date)]);
     }
     
     public function show(Game $game){
@@ -29,10 +31,11 @@ class GameController extends Controller
     }
     
     public function store(Request $request, Game $game){
-        
+    
         $input = $request['game']; #$request['game']がgameをキーに持つ（カラムの構成がgame）入力情報がinputへ
         $game->fill($input)->save();
         return redirect('/games');
+        
         
     }
     
