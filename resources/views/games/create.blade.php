@@ -5,7 +5,7 @@
         <title>試合投稿</title>
     </head>
     <body>
-        <h1>Blog Name</h1>
+        <h1>試合投稿</h1>
         
         <form action="/games" method="POST">
             @csrf

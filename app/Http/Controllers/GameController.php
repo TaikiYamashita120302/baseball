@@ -16,6 +16,12 @@ class GameController extends Controller
         return view('games/index') -> with(['games' => $game->getPaginateByLimit()]);
     }
     
+    public function show(Game $game){
+        
+        return view('games/show')->with(['game' => $game]);
+        
+    }
+    
     public function create(Place $place, Team $team){
     
         return view('games/create')->with(['places' => $place->get()]) -> with(['teams' => $team->get()]);

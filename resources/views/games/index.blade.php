@@ -9,7 +9,7 @@
     </head>
     <body>
         
-        <h1>Game Name</h1>
+        <h1>トップページ</h1>
         
         <div class='postgame'>
             [<a href='/games/create'>試合投稿</a>]
@@ -19,11 +19,10 @@
         <div class='games'>
             @foreach($games as $game)
                 <div class='game'>
-                    <h2 class='date'>{{ $game -> date}}</h2>
-                    <p class='time'>{{ $game -> time}}試合開始</p>
-                    <p class='place'>{{ $game -> place -> name}}</p>
-                    <p class='team_1'>{{ $game -> team1 -> name}}</p>
-                    <p class='team_2'>{{ $game -> team2 -> name}}</p>
+                    <h2 class='date'>
+                        <a href= "/games/{{ $game->id }}">
+                            {{ $game -> date}}</a>
+                    </h2>
                 </div>
             @endforeach
         </div>
