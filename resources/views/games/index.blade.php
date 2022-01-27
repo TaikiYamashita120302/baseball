@@ -32,6 +32,7 @@
                     </h2>
                 </div>
             @endforeach
+            
         </div>
         
         

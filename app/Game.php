@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;#論理削除において必要
 use Illuminate\Support\Facades\DB;
 
 class Game extends Model{
+    
+    use SoftDeletes;
     
     public function posts(){
         return $this->hasMany('App\Post');
@@ -28,9 +31,9 @@ class Game extends Model{
     }
     
     public function getSearchByDate($search_date){
-        return DB::table('games')
+        return DB::table('games') #これは公式ドキュメントを参照
                 ->whereDate('date', $search_date)#第一引数がカラムで第二引数が比較したい日付
-                ->get();
+                ->get(); #これはgamesテーブルの$search_dateと一致する日付を返してね、ということ
     }
     
     protected $fillable = [
