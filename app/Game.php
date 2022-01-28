@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class Game extends Model{
     
-    use SoftDeletes;
+    //use SoftDeletes;
     
     public function posts(){
         return $this->hasMany('App\Post');
@@ -35,6 +35,10 @@ class Game extends Model{
                 ->whereDate('date', $search_date)#第一引数がカラムで第二引数が比較したい日付
                 ->get(); #これはgamesテーブルの$search_dateと一致する日付を返してね、ということ
     }
+    
+    protected $dates = [
+        'date',
+    ];
     
     protected $fillable = [
     'date',

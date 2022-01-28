@@ -19,16 +19,19 @@
         <div class='games'>
         
         <form action="/games" method="GET"> 
-            <input type="date" name="search_date"></input> <!--カレンダー、日付検索機能-->
+            <input type="date" name="search_date" value = ","></input> <!--カレンダー、日付検索機能、その日の日付を入力するにはどうすればいいだろう-->
             <input type="submit" value="検索">
             
         </form>
+        
+        
         
             @foreach($games as $game)
                 <div class='game'>
                     <h2 class='date'>
                         <a href= "/games/{{ $game->id }}">
-                            {{ $game -> date}}</a>
+                            {{ $game->date }}
+                        </a>
                     </h2>
                 </div>
             @endforeach

@@ -31,13 +31,8 @@
             </a>
         </p>
         
-        <form class= "delete" action="/games/{{ $game->id }}" id="form_{{ $game->id }}" method="post" style="display:inline">
-            @csrf
-            @method('DELETE')
-            <button type = "submit">
-                試合削除
-            </button>
-        </form>        <!-- form_deleteはhtml記載の際、必要 -->
+        
+        <!-- form_deleteはhtml記載の際、必要 -->
         <!-- style="display:inlineはいらない気がするが一応置いておく -->
         <!-- javascriptを使ってのポップアップは使用しない、管理者だけだしとりあえずはいらないかなって思って -->
         <div class="footer">
