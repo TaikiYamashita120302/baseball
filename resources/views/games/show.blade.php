@@ -11,7 +11,7 @@
     
     <body>
         <h1 class="date">
-            {{ $game->date }}
+            {{ $game->date->format("m月d日の試合") }}
         </h1>
         
         <div class="content">
@@ -31,6 +31,13 @@
             </a>
         </p>
         
+        <form class= "delete" action="/games/{{ $game->id }}" id="form_{{ $game->id }}" method="post" style="display:inline">
+            @csrf
+            @method('DELETE')
+            <button type = "submit">
+                試合削除
+            </button>
+        </form> 
         
         <!-- form_deleteはhtml記載の際、必要 -->
         <!-- style="display:inlineはいらない気がするが一応置いておく -->

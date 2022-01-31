@@ -11,7 +11,7 @@
             @csrf
             <div class="date">
                 <h2>日付</h2>
-                <input type="date" name="game[date]" />
+                <input type="date" name="game[date]" value = "<?php echo date('Y-m-j');?>"/>
             </div>
             
             <div class="time">
