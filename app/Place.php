@@ -10,7 +10,7 @@ class Place extends Model
         return $this->hasMany('App\Game');
     }
     
-    public function team(){
-        return $this->belongsTo('App\Team');
+    public function teams(){
+        return $this->belongsToMany('App\Team');
     }
 }

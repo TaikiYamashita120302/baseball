@@ -11,7 +11,7 @@ class Team extends Model
     }
     
     public function places(){
-        return $this->hasMany('App\Place');
+        return $this->belongsToMany('App\Place');
     }
 }
 

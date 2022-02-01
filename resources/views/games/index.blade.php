@@ -19,7 +19,7 @@
         <div class='games'>
         
         <form action="/games" method="GET"> 
-            <input type="date" name="search_date" value = "<?php echo date('Y-m-j');?>"></input> <!--カレンダー、日付検索機能、その日の日付を入力するにはどうすればいいだろう-->
+            <input type="date" name="search_date" value="<?php echo date('Y-m-d');?>"></input> <!--カレンダー、日付検索機能、その日の日付を入力するにはどうすればいいだろう-->
             <input type="submit" value="検索">
             
         </form>

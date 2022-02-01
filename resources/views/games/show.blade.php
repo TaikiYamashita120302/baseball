@@ -14,6 +14,12 @@
             {{ $game->date->format("m月d日の試合") }}
         </h1>
         
+        <p class="post">
+            <a href = "/posts">
+                口コミ投稿
+            </a>
+        </p>
+        
         <div class="content">
             
             <div class="content__game">
