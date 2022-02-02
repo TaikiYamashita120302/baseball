@@ -9,11 +9,21 @@
     </head>
     <body>
         
-        <h1>トップページ</h1>
+        <h1>管理者画面</h1>
         
         <div class='postgame'>
             [<a href='/games/create'>試合投稿</a>]
         </div> 
+        
+        <P>
+            <?php
+            if($search_date == null){
+            echo now()->format('m月d日の試合'); //現在日付
+            }else{
+            echo date("m月d日", strtotime($search_date)) . "の試合";
+            }
+            ?>
+        </P>
         
         
         <div class='games'>
@@ -25,12 +35,13 @@
         </form>
         
         
-        
             @foreach($games as $game)
                 <div class='game'>
                     <h2 class='date'>
+                       
+                        
                         <a href= "/games/{{ $game->id }}">
-                            {{ $game->date->format("m月d日の試合") }}
+                            {{ $game->team1->name }} 対 {{ $game->team2->name }}
                         </a>
                     </h2>
                 </div>
