@@ -5,19 +5,29 @@
         <title>Blog</title>
     </head>
     <body>
-        <h1>Blog Name</h1>
-        <form action="/posts" method="POST">
+        <h1>投稿画面</h1>
+        
+        <form action="/posts/{{ $game->id }}" method="POST">
             @csrf
             <div class="body">
-                <h2>Body</h2>
+                <h2>投稿</h2>
                 <textarea name="post[body]" placeholder="今日も1日お疲れさまでした。"></textarea>
             </div>
-            <div class="user_id">
-                <h2>user_id</h2>
-                <textarea name="post[body]" placeholder="今日も1日お疲れさまでした。"></textarea>
+            
+            <div class="user">
+                <h2>ユーザー</h2>
+                <select name="post[user_id]">
+                    @foreach($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    @endforeach
+                </select>
             </div>
-            <input type="submit" value="保存"/>
+            
+            
+            
+            <input type="submit" value="投稿"/>
         </form>
+        
         <div class="back">[<a href="/posts">back</a>]</div>
     </body>
 </html>

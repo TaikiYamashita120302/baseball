@@ -49,7 +49,11 @@
             
         </div>
         
-        
+        <P>
+            <a href= "/posts">
+                ユーザー側画面へ
+            </a>
+        </P>
         
     </body>
 </html>

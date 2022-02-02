@@ -1,25 +1,57 @@
 <!DOCTYPE html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>Top</title>
+        <title>トップページ</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>トップページ</h1>
-        <div class='posts'>
-            [<a href= '/posts/create'>試合投稿</a>]
-            @foreach($posts as $post)
-            <div class='post'>
-            <h2 class = 'title'>
-                <a href ="/posts/{{ $post->id }}">title</a>
-            </h2>
-            </div>
+        
+        <h1>ユーザー側画面</h1>
+        
+        
+        <P>
+            <?php
+            if($search_date == null){
+            echo now()->format('m月d日の試合'); //現在日付
+            }else{
+            echo date("m月d日", strtotime($search_date)) . "の試合";
+            }
+            ?>
+        </P>
+        
+        
+        <div class='games'>
+        
+        <form action="/posts" method="GET">
+             
+            <input type="date" name="search_date" value="<?php echo date('Y-m-d');?>"></input> <!--カレンダー、日付検索機能、その日の日付を入力するにはどうすればいいだろう-->
+            <input type="submit" value="検索">
+            
+        </form>
+        
+        
+            @foreach($games as $game)
+                <div class='game'>
+                    <h2 class='date'>
+                       
+                        <a href= "/posts/{{ $game->id }}">
+                            {{ $game->team1->name }} 対 {{ $game->team2->name }}
+                        </a>
+                        
+                    </h2>
+                </div>
             @endforeach
+            
         </div>
-        <div class='paginate'>
-            {{ $posts->links() }}
-        </div>
+        
+        <P>
+            <a href= "/games">
+                管理者画面へ
+            </a>
+        </P>
+        
     </body>
 </html>

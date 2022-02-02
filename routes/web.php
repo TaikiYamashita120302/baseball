@@ -20,6 +20,6 @@ Route::put('/games/{game}', 'GameController@update');
 Route::delete('/games/{game}', 'GameController@delete');
 
 Route::get('/posts', 'PostController@index');
-Route::get('/posts/create', 'PostController@create');
-Route::get('/posts/{post}', 'PostController@show');
-Route::post('/posts', 'PostController@store');
+Route::get('/posts/{game}', 'PostController@show');
+Route::get('/posts/{game}/create', 'PostController@create');
+Route::post('/posts/{game}', 'PostController@store');

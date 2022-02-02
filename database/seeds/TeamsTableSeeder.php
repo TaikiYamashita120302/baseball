@@ -37,7 +37,7 @@ class TeamsTableSeeder extends Seeder
         ]);
         
         DB::table('teams')->insert([
-        'name' => '埼玉西武ライオンズ',
+        'name' => '西武',
         'league' => 'パシフィックリーグ',
         ]);
         

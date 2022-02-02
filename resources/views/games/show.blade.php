@@ -11,22 +11,17 @@
     
     <body>
         <h1 class="date">
-            {{ $game->date->format("m月d日の試合") }}
+            {{ $game->date->format("m月d日") }}
         </h1>
-        
-        <p class="post">
-            <a href = "/posts">
-                口コミ投稿
-            </a>
-        </p>
         
         <div class="content">
             
             <div class="content__game">
-                <p class='time'>{{ $game -> time}}試合開始</p>
-                <p class='place'>{{ $game -> place -> name}}</p>
-                <p class='team_1'>{{ $game -> team1 -> name}}</p>
-                <p class='team_2'>{{ $game -> team2 -> name}}</p>    
+                <p class='time'>{{ $game -> time }}試合開始</p>
+                <p class='place'>{{ $game -> place -> name }}</p>
+                <p class='team_1対team_2'>
+                    {{ $game -> team1 -> name}}対{{ $game -> team2 -> name }}
+                </p>    
             </div>
             
         </div>
