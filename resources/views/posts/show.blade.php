@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <!DOCTYPE HTML>
 <html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
     <head>
@@ -14,7 +18,7 @@
             {{ $game->date->format("m月d日") }}
         </h1>
         
-        <div class="content">
+        <div class="game">
             
             <div class="content__game">
                 <p class='time'>{{ $game -> time }}試合開始</p>
@@ -30,6 +34,17 @@
             [<a href='/posts/{{ $game->id }}/create'>口コミ投稿</a>]
         </div> 
         
+        <div class = 'posts'>
+            
+            @foreach($posts as $post)
+            <p>
+                <a href='/posts/{{ $game->id }}'>
+                    
+                </a>{{ $post -> body }}
+            </p>
+            @endforeach
+            
+        </div>
         <!-- form_deleteはhtml記載の際、必要 -->
         <!-- style="display:inlineはいらない気がするが一応置いておく -->
         <!-- javascriptを使ってのポップアップは使用しない、管理者だけだしとりあえずはいらないかなって思って -->
@@ -38,3 +53,5 @@
         </div>
     </body>
 </html>
+
+@endsection

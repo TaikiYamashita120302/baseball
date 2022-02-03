@@ -19,7 +19,15 @@ Route::get('/games/{game}/edit', 'GameController@edit');
 Route::put('/games/{game}', 'GameController@update');
 Route::delete('/games/{game}', 'GameController@delete');
 
-Route::get('/posts', 'PostController@index');
-Route::get('/posts/{game}', 'PostController@show');
-Route::get('/posts/{game}/create', 'PostController@create');
-Route::post('/posts/{game}', 'PostController@store');
+
+Route::group(['middleware' => ['auth']], function(){//ミドルウェアをauthで定義することで、ルーティングがログアウトユーザーから来たら防ぐ
+    Route::get('/posts', 'PostController@index')->name('home');//ログイン後の画面 //->middleware('auth')
+    Route::get('/posts/{game}', 'PostController@show');
+    Route::get('/posts/{game}/create', 'PostController@create');
+    Route::post('/posts/{game}', 'PostController@store');
+});
+
+Auth::routes();
+
+
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post; #忘れがちだからしっかりと記載
 use App\Game;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -18,7 +19,9 @@ class PostController extends Controller
     }
     
     public function show(Post $post, Game $game){
-        return view('posts/show') -> with(['posts' => $post->getPaginateByLimit(), 'game' => $game]);#$gameのあとにgetつかないのは、web.phpで{game}としているから！ちなみにgamesじゃないのは詳細画面は1ゲームにつき一つだから
+        $game_id = $game->id;
+        $post = DB::table('posts')->where('game_id', $game_id)->get();#where句を使えばリレーションされている取りたいデータとってこれる！
+        return view('posts/show') -> with(['posts' => $post, 'game'=>$game]);#$gameのあとにgetつかないのは、web.phpで{game}としているから！ちなみにgamesじゃないのは詳細画面は1ゲームにつき一つだから
     }
     
     public function create(User $user, Game $game){#作成するわけだから現データベースのデータの受け渡しは不要
@@ -27,7 +30,7 @@ class PostController extends Controller
     
     public function store(Request $request, Game $game, Post $post){#$requestで一旦ユーザーのデータを受け取る。 $postは空のpostインスタンス 
         $input = $request['post'];#$request['post']を利用すると、postをキー（データのカラム）にもつリクエストパラメータを取得することができる。
-        $input += ['game_id' => $game->id];    //'game_idは持ってきたgame_id'
+        $input += ['game_id' => $game->id];    //createで使う'game_id'はURIで指定している$gameのidだよ、という意。
         $post->fill($input)->save();#先ほどまで空だったPostインスタンスのプロパティを受け取ったキーごとに上書き
         return redirect('/posts/' . $game->id);#/posts/1 のようにidを取得して記事詳細画面に行く
     }

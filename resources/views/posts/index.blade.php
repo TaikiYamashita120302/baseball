@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <!DOCTYPE html>
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -47,6 +51,8 @@
             
         </div>
         
+        {{ Auth::user()->name }}
+        
         <P>
             <a href= "/games">
                 管理者画面へ
@@ -55,3 +61,5 @@
         
     </body>
 </html>
+
+@endsection
