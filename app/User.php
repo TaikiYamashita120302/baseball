@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Auth; //Userクラス定義の前に追加
 
 class User extends Authenticatable
 {
@@ -39,5 +40,9 @@ class User extends Authenticatable
     
     public function posts(){
         return $this->hasMany('App\Post');
+    }
+    
+    public function getOwnPaginateByLimit(int $limit_count = 10){
+        return $this::with('posts')->find(Auth::id())->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);//ここでユーザーの指定を行ない、その投稿のみを返している
     }
 }

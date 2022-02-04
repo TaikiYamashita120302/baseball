@@ -18,16 +18,6 @@
                 <textarea name="post[body]" placeholder="今日も1日お疲れさまでした。"></textarea>
             </div>
             
-            <div class="user">
-                <h2>ユーザー</h2>
-                <select name="post[user_id]">
-                    @foreach($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            
-            
             
             <input type="submit" value="投稿"/>
         </form>

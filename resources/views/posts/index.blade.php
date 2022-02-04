@@ -17,6 +17,12 @@
         
         
         <P>
+            <a href="/user">
+                マイページ
+            </a>
+        </P>
+        
+        <P>
             <?php
             if($search_date == null){
             echo now()->format('m月d日の試合'); //現在日付

@@ -34,13 +34,12 @@
             [<a href='/posts/{{ $game->id }}/create'>口コミ投稿</a>]
         </div> 
         
-        <div class = 'posts'>
+        <div class = 'posts'> 
             
             @foreach($posts as $post)
             <p>
-                <a href='/posts/{{ $game->id }}'>
-                    
-                </a>{{ $post -> body }}
+               {{ $post->user->name }}
+                {{ $post->body }}
             </p>
             @endforeach
             
