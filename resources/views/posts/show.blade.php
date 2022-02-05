@@ -48,7 +48,7 @@
         <!-- style="display:inlineはいらない気がするが一応置いておく -->
         <!-- javascriptを使ってのポップアップは使用しない、管理者だけだしとりあえずはいらないかなって思って -->
         <div class="footer">
-            <a href="/posts">戻る</a>
+            <a href="/">戻る</a>
         </div>
     </body>
 </html>

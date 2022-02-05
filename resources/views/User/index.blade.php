@@ -43,7 +43,7 @@
         
     <div class="top">
         <p>
-            <a href="/posts">
+            <a href="/">
                 ホームへ
             </a>
         </p>

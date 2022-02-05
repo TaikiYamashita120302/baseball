@@ -39,7 +39,7 @@
         </div>
         
         <P>
-            <a href= "/posts">
+            <a href= "/">
                 ユーザー側画面へ
             </a>
         </P>

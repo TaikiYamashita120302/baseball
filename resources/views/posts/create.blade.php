@@ -22,7 +22,7 @@
             <input type="submit" value="投稿"/>
         </form>
         
-        <div class="back">[<a href="/posts">back</a>]</div>
+        <div class="back">[<a href="/posts/{{ $game->id }}">back</a>]</div>
     </body>
 </html>
 
