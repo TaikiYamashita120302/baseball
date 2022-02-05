@@ -12,15 +12,20 @@ class PostController extends Controller
 {
     public function index(Game $game, Request $request){
         
-        $search_date = $request->input('search_date'); #カレンダー、日付検索機能で入力した日付> search_dateはformの名前とリンク
+        $search_date = $request->input('search_date'); 
+        //dd(gettype($search_date));
+        if($search_date==null){
+            $search_date = date('Y-m-d');#string型 Y-m-dの表記でカレンダー表示可能
+            //dd(gettype($search_date));
+        }
+                //カレンダー、日付検索機能で入力した日付> search_dateはformの名前とリンク
         
         return view('posts/index') -> with(['games' => $game->getSearchByDate($search_date),'search_date' => $search_date]);#関数をgameモデルに渡す、何を渡すかは名称ではなく順番
     }
     
     public function show(Post $post, Game $game){
-        $game_id = $game->id;
-        $post = $post->where('game_id', $game_id)->get();#where句を使えばリレーションされている取りたいデータとってこれる！
-        return view('posts/show') -> with(['posts' => $post, 'game'=>$game]);#$gameのあとにgetつかないのは、web.phpで{game}としているから！ちなみにgamesじゃないのは詳細画面は1ゲームにつき一つだから
+        $posts = $game->posts;
+        return view('posts/show') -> with(['posts' => $posts, 'game'=>$game]);#$gameのあとにgetつかないのは、web.phpで{game}としているから！ちなみにgamesじゃないのは詳細画面は1ゲームにつき一つだから
     }
     
     public function create(Game $game){#作成するわけだから現データベースのデータの受け渡しは不要

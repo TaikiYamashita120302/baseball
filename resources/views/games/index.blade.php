@@ -15,25 +15,14 @@
             [<a href='/games/create'>試合投稿</a>]
         </div> 
         
-        <P>
-            <?php
-            if($search_date == null){
-            echo now()->format('n月j日の試合'); //現在日付
-            }else{
-            echo date("n月j日", strtotime($search_date)) . "の試合";
-            }
-            ?>
-        </P>
-        
-        
         <div class='games'>
         
         <form action="/games" method="GET"> 
-            <input type="date" name="search_date" value="<?php echo date('Y-m-d');?>"></input> <!--カレンダー、日付検索機能、その日の日付を入力するにはどうすればいいだろう-->
+            <input type="date" name="search_date" value="{{ $search_date }}"></input> <!--カレンダー、日付検索機能、その日の日付を入力するにはどうすればいいだろう-->
             <input type="submit" value="検索">
             
         </form>
-        
+        {{ date('n月j日',strtotime($search_date)) }}の試合
         
             @foreach($games as $game)
                 <div class='game'>
