@@ -11,7 +11,7 @@
     
     <body>
         <h1 class="date">
-            {{ $game->date->format("m月d日") }}
+            {{ $game->date->format("n月j日") }}
         </h1>
         
         <div class="content">

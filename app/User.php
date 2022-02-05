@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','profile',
     ];
 
     /**
@@ -45,4 +45,9 @@ class User extends Authenticatable
     public function getOwnPaginateByLimit(int $limit_count = 10){
         return $this::with('posts')->find(Auth::id())->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);//ここでユーザーの指定を行ない、その投稿のみを返している
     }
+    
+    public function getOwnUser(){ //user_tableのidとログインしたときのidが一致したとき、そのuser情報を取ってくる
+        return $this->find(Auth::id());
+    }
+    
 }

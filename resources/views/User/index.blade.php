@@ -5,13 +5,25 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div user>
+    <p>
+        <a href="/user/{{ $user->id }}/edit">
+            プロフィールを編集
+        </a>
+    </p>
+    <p>
+        {{ $user->profile }}
+    </p>
+</div>
+
     <div class="own_posts">
         
         @foreach($own_posts as $post)
             <div>
                 <h4>
                     <a href="/posts/{{ $post->game->id }}">
-                        {{ $post->game->date->format('m月d日') }}の試合
+                        {{ $post->game->date->format('n月j日') }}の試合
                     </a>
                  </h4>
                  

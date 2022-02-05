@@ -25,9 +25,9 @@
         <P>
             <?php
             if($search_date == null){
-            echo now()->format('m月d日の試合'); //現在日付
+            echo now()->format('n月j日の試合'); //現在日付
             }else{
-            echo date("m月d日", strtotime($search_date)) . "の試合";
+            echo date("n月j日", strtotime($search_date)) . "の試合";
             }
             ?>
         </P>

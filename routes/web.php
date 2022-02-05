@@ -28,6 +28,8 @@ Route::group(['middleware' => ['auth']], function(){//ミドルウェアをauth�
     ROUTE::delete('/posts/{post}', 'PostController@delete');
     
     Route::get('/user', 'UserController@index');
+    Route::get('/user/{user}/edit', 'UserController@edit');
+    Route::put('/user/{user}', 'UserController@update');
 });
 
 Auth::routes();
