@@ -31,7 +31,7 @@
         
         <div class='games'>
         
-        <form action="/posts" method="GET">
+        <form action="/" method="GET">
              
             <input type="date" name="search_date" value="{{ $search_date }}"></input> <!--カレンダー、日付検索機能、その日の日付を入力するにはどうすればいいだろう-->
             <input type="submit" value="検索">
