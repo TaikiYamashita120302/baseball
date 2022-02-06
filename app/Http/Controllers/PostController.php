@@ -7,6 +7,8 @@ use App\Game;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use Auth; //Userクラス定義の前に追加
 
 class PostController extends Controller
 {
@@ -23,8 +25,10 @@ class PostController extends Controller
         return view('posts/index') -> with(['games' => $game->getSearchByDate($search_date),'search_date' => $search_date]);#関数をgameモデルに渡す、何を渡すかは名称ではなく順番
     }
     
-    public function show(Post $post, Game $game){
-        $posts = $game->posts;
+    public function show(Game $game){
+        //持ってきたidをインスタンス化すると、そのgameの全カラムから取得可能。
+        $posts = $game->posts()->get(); // $posts = $game->postsでもとれるが、関数としてちゃんと扱うようにposts()->get()とした方が望ましい。
+        //dd($posts);
         return view('posts/show') -> with(['posts' => $posts, 'game'=>$game]);#$gameのあとにgetつかないのは、web.phpで{game}としているから！ちなみにgamesじゃないのは詳細画面は1ゲームにつき一つだから
     }
     
@@ -38,6 +42,26 @@ class PostController extends Controller
         $input += ['game_id' => $game->id];    //createで使う'game_id'はURIで指定している$gameのidだよ、という意。
         $post->fill($input)->save();#先ほどまで空だったPostインスタンスのプロパティを受け取ったキーごとに上書き
         return redirect('/posts/' . $game->id);#/posts/1 のようにidを取得して記事詳細画面に行く
+    }
+    
+    public function like($game, $post){//中身はid;
+        //ルーティングの{}もってくるときはインスタンス化しなくてよい。また、{}が複数あるときは、２個なら２個、ちゃんと書いてあげる。
+        
+        Auth::user()->likes()->attach($post);//userからlikes関数を使い（リレーション）、中間テーブルの自分のidのところのpostをとってくる
+        //リレーション時、今回は多対多であるが親もしくは親のように主のものからの方がとりやすい
+        //user()->likes()で中間テーブルにアクセスしている？イメージ
+        
+        
+        //dd($post->likes());
+        return redirect()->back();
+        
+    }
+    
+    public function unlike($game, $post){
+        
+        Auth::user()->likes()->detach($post);//attachの反対でdetach、これで切り離す
+        
+        return redirect()->back();
     }
     
     public function delete(Post $post){

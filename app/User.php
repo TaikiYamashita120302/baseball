@@ -42,6 +42,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
     
+    public function likes(){
+        return $this->belongsToMany('App\Post','user_post');
+    }
+    
     public function getOwnPaginateByLimit(int $limit_count = 10){
         return $this::with('posts')->find(Auth::id())->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);//ここでユーザーの指定を行ない、その投稿のみを返している
     }

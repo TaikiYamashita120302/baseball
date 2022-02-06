@@ -40,6 +40,17 @@
             <p>
                {{ $post->user->name }}
                 {{ $post->body }}
+                
+            <div>
+                
+                @if($post->is_liked_by_auth_user())
+                <a href='/posts/{{ $game->id }}/{{ $post->id }}/unlike' class="btn btn-success btn-sm">いいね<span class="badge">{{ $post->likes()->count() }}</span></a>
+                @else
+                <a href='/posts/{{ $game->id }}/{{ $post->id }}/like' class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post->likes()->count() }}</span></a>
+                @endif
+                
+            </div>
+            
             </p>
             @endforeach
             
