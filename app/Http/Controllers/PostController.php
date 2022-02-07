@@ -15,12 +15,12 @@ class PostController extends Controller
     public function index(Game $game, Request $request){
         
         $search_date = $request->input('search_date'); 
-        //dd(gettype($search_date));
+        //dd(($search_date));
         if($search_date==null){
-            $search_date = date('Y-m-d');#string型 Y-m-dの表記でカレンダー表示可能
-            //dd(gettype($search_date));
+            $search_date = date('Y-m-d');
+        //$search_dateはstring型 <input type="date"～で送られてくるやつもstring型 Y-m-dの表記でカレンダーへの表示可能、これは今日の日付
         }
-                //カレンダー、日付検索機能で入力した日付> search_dateはformの名前とリンク
+
         
         return view('posts/index') -> with(['games' => $game->getSearchByDate($search_date),'search_date' => $search_date]);#関数をgameモデルに渡す、何を渡すかは名称ではなく順番
     }
@@ -28,7 +28,7 @@ class PostController extends Controller
     public function show(Game $game){
         //持ってきたidをインスタンス化すると、そのgameの全カラムから取得可能。
         $posts = $game->posts()->get(); // $posts = $game->postsでもとれるが、関数としてちゃんと扱うようにposts()->get()とした方が望ましい。
-        //dd($posts);
+
         return view('posts/show') -> with(['posts' => $posts, 'game'=>$game]);#$gameのあとにgetつかないのは、web.phpで{game}としているから！ちなみにgamesじゃないのは詳細画面は1ゲームにつき一つだから
     }
     
@@ -46,15 +46,10 @@ class PostController extends Controller
     
     public function like($game, $post){//中身はid;
         //ルーティングの{}もってくるときはインスタンス化しなくてよい。また、{}が複数あるときは、２個なら２個、ちゃんと書いてあげる。
-        
         Auth::user()->likes()->attach($post);//userからlikes関数を使い（リレーション）、中間テーブルの自分のidのところのpostをとってくる
         //リレーション時、今回は多対多であるが親もしくは親のように主のものからの方がとりやすい
-        //user()->likes()で中間テーブルにアクセスしている？イメージ
-        
-        
-        //dd($post->likes());
+        //user()->likes()で中間テーブルにアクセスしている
         return redirect()->back();
-        
     }
     
     public function unlike($game, $post){

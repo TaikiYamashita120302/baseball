@@ -21,6 +21,24 @@
                 マイページ
             </a>
         </P>
+        
+        <form action="/" method="GET">
+           
+            <button type="submit" name="search_date" value="{{ date('Y-m-d') }}">本日の試合</button>
+            
+        </form>
+        
+        <form action="/" method="GET">
+           
+            <button type="submit" name="search_date" value="{{ date('Y-m-d', strtotime($search_date . '-1 day')) }}">昨日の試合</button>
+            
+        </form>
+        
+        <form action="/" method="GET">
+           
+            <button type="submit" name="search_date" value="{{ date('Y-m-d', strtotime($search_date . '+1 day')) }}">明日の試合</button>
+           
+        </form>
     
         
         <div class='games'>
@@ -50,12 +68,14 @@
         
         {{ Auth::user()->name }}
         
+        @can('admin')
         <P>
             <a href= "/games">
                 管理者画面へ
             </a>
         </P>
-        
+        @endcan
+         
     </body>
 </html>
 

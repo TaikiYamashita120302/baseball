@@ -10,16 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//管理ユーザー
+Route::group(['middleware' => ['auth', 'can:admin']], function(){
+    Route::get('/games', 'GameController@index');
+    Route::get('/games/create', 'GameController@create');
+    Route::post('/games', 'GameController@store');
+    Route::get('/games/{game}', 'GameController@show');
+    Route::get('/games/{game}/edit', 'GameController@edit');
+    Route::put('/games/{game}', 'GameController@update');
+    Route::delete('/games/{game}', 'GameController@delete');
+});
 
-Route::get('/games', 'GameController@index');
-Route::get('/games/create', 'GameController@create');
-Route::post('/games', 'GameController@store');
-Route::get('/games/{game}', 'GameController@show');
-Route::get('/games/{game}/edit', 'GameController@edit');
-Route::put('/games/{game}', 'GameController@update');
-Route::delete('/games/{game}', 'GameController@delete');
 
 
+//一般ユーザー
 Route::group(['middleware' => ['auth']], function(){//ミドルウェアをauthで定義することで、ルーティングがログアウトユーザーから来たら防ぐ<=>ログアウトユーザーのアクセスの制限
     Route::get('/', 'PostController@index')->name('home');//ログイン後の画面 //->middleware('auth'),トップページだから/にする！
     Route::get('/posts/{game}', 'PostController@show');
