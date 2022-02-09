@@ -10,6 +10,23 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Auth; //Userクラス定義の前に追加
 
+function week($date){//$dateは日付、string型 date関数はstring型で返される
+        //指定日の曜日を取得する
+        $week_id = date('w', strtotime($date));
+        //配列を使用し、要素順に(日:0〜土:6)を設定する
+        $week_array = [
+            '日', //0
+            '月', //1
+            '火', //2
+            '水', //3
+            '木', //4
+            '金', //5
+            '土', //6
+        ];
+        
+        return $week_array[$week_id];
+    }
+    
 class PostController extends Controller
 {
     public function index(Game $game, Request $request){
@@ -20,16 +37,18 @@ class PostController extends Controller
             $search_date = date('Y-m-d');
         //$search_dateはstring型 <input type="date"～で送られてくるやつもstring型 Y-m-dの表記でカレンダーへの表示可能、これは今日の日付
         }
-
         
-        return view('posts/index') -> with(['games' => $game->getSearchByDate($search_date),'search_date' => $search_date]);#関数をgameモデルに渡す、何を渡すかは名称ではなく順番
+        $week = week($search_date);
+        
+        return view('posts/index') -> with(['games' => $game->getSearchByDate($search_date),'search_date' => $search_date, 'week'=>$week]);#関数をgameモデルに渡す、何を渡すかは名称ではなく順番
     }
     
     public function show(Game $game){
         //持ってきたidをインスタンス化すると、そのgameの全カラムから取得可能。
         $posts = $game->posts()->get(); // $posts = $game->postsでもとれるが、関数としてちゃんと扱うようにposts()->get()とした方が望ましい。
+        $week = week($game->date);//曜日を返す
 
-        return view('posts/show') -> with(['posts' => $posts, 'game'=>$game]);#$gameのあとにgetつかないのは、web.phpで{game}としているから！ちなみにgamesじゃないのは詳細画面は1ゲームにつき一つだから
+        return view('posts/show') -> with(['posts' => $posts, 'game' => $game, 'week' => $week]);#$gameのあとにgetつかないのは、web.phpで{game}としているから！ちなみにgamesじゃないのは詳細画面は1ゲームにつき一つだから
     }
     
     public function create(Game $game){#作成するわけだから現データベースのデータの受け渡しは不要

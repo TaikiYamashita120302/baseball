@@ -46,6 +46,7 @@ class Game extends Model{
     'place_id',
     'team_id1',
     'team_id2',
+    'reason',
     ];
         
 }

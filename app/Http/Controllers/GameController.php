@@ -42,19 +42,31 @@ class GameController extends Controller
     }
     
     public function edit(Game $game, Place $place, Team $team){#$game は以前入力していたgameデータだから、createには、'Game $game'がない
-        
         return view('games/edit')->with(['game' => $game])->with(['places' => $place->get()]) -> with(['teams' => $team->get()]);
         
     }
     
     public function update(Request $request, Game $game){
-        $input = $request['game'];
+        $input = $request['game'];//editのformから送られてくるnameとリンク
         $game->fill($input)->save();
         return redirect('/games/' . $game->id);
     }
     
+
+    
+    /*
     public function delete(Game $game){
         $game -> delete();#Modelクラスの関数でdeleteというものが用意されているため、それを用いるだけで簡単に実装できる。
         return redirect('/games');
+        
+        (ブレード記載してた文)
+        <form class= "delete" action="/games/{{ $game->id }}" id="form_{{ $game->id }}" method="post" style="display:inline">
+            @csrf
+            @method('DELETE')
+            <button type = "submit">
+                試合削除
+            </button>
+        </form> 
     }
+    */
 }

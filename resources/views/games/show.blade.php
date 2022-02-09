@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>試合詳細画面</title>
+        <!-- Style -->
+        <link href="/css/game_show.css" rel="stylesheet" media="all">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="/css/app.css">
@@ -32,17 +34,8 @@
             </a>
         </p>
         
-        <form class= "delete" action="/games/{{ $game->id }}" id="form_{{ $game->id }}" method="post" style="display:inline">
-            @csrf
-            @method('DELETE')
-            <button type = "submit">
-                試合削除
-            </button>
-        </form> 
+        {{ $game->reason }}
         
-        <!-- form_deleteはhtml記載の際、必要 -->
-        <!-- style="display:inlineはいらない気がするが一応置いておく -->
-        <!-- javascriptを使ってのポップアップは使用しない、管理者だけだしとりあえずはいらないかなって思って -->
         <div class="footer">
             <a href="/games">戻る</a>
         </div>

@@ -8,6 +8,10 @@
 
 <div user>
     <p>
+        {{ $user->name }}
+    </p>
+    
+    <p>
         <a href="/user/{{ $user->id }}/edit">
             プロフィールを編集
         </a>

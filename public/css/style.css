@@ -1,0 +1,20 @@
+body{
+    color:black;
+}
+
+.header{
+    font-size:15px;
+    height:80px;
+    background-color: white;
+    color:red;
+}
+
+.head_element{
+    float:left;
+    padding: 30px 80px;
+}
+
+.main{
+    clear:left;
+}
+

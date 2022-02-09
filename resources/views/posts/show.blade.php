@@ -14,52 +14,38 @@
     </head>
     
     <body>
-        <h1 class="date">
-            {{ $game->date->format("n月j日") }}
-        </h1>
-        
-        <div class="game">
-            
-            <div class="content__game">
-                <p class='time'>{{ $game -> time }}試合開始</p>
-                <p class='place'>{{ $game -> place -> name }}</p>
-                <p class='team_1対team_2'>
+        <div class="header">
+            <div class="upper_header">
+                <div class="game_card">
                     {{ $game -> team1 -> name}}対{{ $game -> team2 -> name }}
-                </p>    
+                </div>
+                <div class="date_place">
+                    {{ $game->date->format("n月j日") }}({{ $week }})
+                    {{ date("G時i分",strtotime($game->time))}}
+                    {{ $game->place->name }}
+                </div>
             </div>
-            
+            <div class="lower_header">
+                <a href="/">ホーム</a>
+                <a href='/posts/{{ $game->id }}/create'>投稿</a>
+            </div>
         </div>
         
-        <div class='create'>
-            [<a href='/posts/{{ $game->id }}/create'>口コミ投稿</a>]
-        </div> 
-        
-        <div class = 'posts'> 
-            
+        <div class = 'posts'>
             @foreach($posts as $post)
-            <p>
-               {{ $post->user->name }}
-                {{ $post->body }}
-                
-            <div>
-                
-                @if($post->is_liked_by_auth_user())
-                <a href='/posts/{{ $game->id }}/{{ $post->id }}/unlike' class="btn btn-success btn-sm">いいね<span class="badge">{{ $post->likes()->count() }}</span></a>
-                @else
-                <a href='/posts/{{ $game->id }}/{{ $post->id }}/like' class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post->likes()->count() }}</span></a>
-                @endif
-                
+            <div class="user_name">
+                {{ $post->user->name }}
             </div>
-            
-            </p>
+            <div class="posts_body">
+                {{ $post->body }}
+            </div>
+            {{ $post->created_at->format("Y年n月j日 G:i") }}
+            @if($post->is_liked_by_auth_user())
+            <a href='/posts/{{ $game->id }}/{{ $post->id }}/unlike' class="btn btn-success btn-sm">いいね<span class="badge">{{ $post->likes()->count() }}</span></a>
+            @else
+            <a href='/posts/{{ $game->id }}/{{ $post->id }}/like' class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post->likes()->count() }}</span></a>
+            @endif
             @endforeach
-            
-        </div>
-        <!-- form_deleteはhtml記載の際、必要 -->
-        <!-- style="display:inlineはいらない気がするが一応置いておく -->
-        <!-- javascriptを使ってのポップアップは使用しない、管理者だけだしとりあえずはいらないかなって思って -->
-        <div class="footer">
-            <a href="/">戻る</a>
         </div>
     </body>
 </html>

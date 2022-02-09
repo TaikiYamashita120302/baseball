@@ -13,12 +13,12 @@
                 
             <div class="date">
                 <h2>日付</h2>
-                <input type="date" name="game[date]" />
+                <input type="date" name="game[date]" value="{{ date('Y-m-d',strtotime($game->date)) }}"></input> <!--カレンダー-->
             </div>
             
             <div class="time">
                 <h2>時間</h2>
-                <input type="time" name="game[time]" />
+                <input type="time" name="game[time]" value="{{ date("H:i",strtotime($game->time))}}" />
             </div>
             
             <div class="place">
@@ -48,6 +48,11 @@
                 </select>
             </div>
             
+            <div class="reason">
+                <h2>変更点</h2>
+                <textarea name="game[reason]" cols="50" rows="2">{{ $game->reason }}</textarea>
+            </div>
+        
             <input type="submit" value="保存">
             </form>
             <div class="footer">

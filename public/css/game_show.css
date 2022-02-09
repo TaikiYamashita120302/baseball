@@ -1,0 +1,31 @@
+.arrow_box{
+    position:relative;
+    width:500px;
+    height:80px;
+    background:#0099FF;
+    padding:10px;
+    text-align:center;
+    color:#FFFFFF;
+    font-size:30px;
+    font-weight:bold;
+    border-radius:10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+}
+.arrow_box:after{
+    border: solid transparent;
+    content:'';
+    height:0;
+    width:0;
+    pointer-events:none;
+    position:absolute;
+    border-color: rgba(0, 153, 255, 0);
+    border-top-width:10px;
+    border-bottom-width:10px;
+    border-left-width:10px;
+    border-right-width:10px;
+    margin-left: -10px;
+    border-bottom-color:#0099FF;
+    bottom:100%;
+    left:50%;
+}

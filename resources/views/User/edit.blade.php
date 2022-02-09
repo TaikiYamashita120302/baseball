@@ -12,9 +12,13 @@
         <form action="/user/{{ $user->id }}" method="POST">
             @csrf
             @method('PUT')
+            <div class='content__name'>
+                <h2>名前</h2>
+                <input type="text" name="user[name]" value="{{ $user->name }}">
+            </div>
             <div class='content__profile'>
                 <h2>プロフィール文</h2>
-                <textarea name="user[profile]" cols="50" rows="3">{{ $user->profile }}</textarea>;
+                <textarea name="user[profile]" cols="50" rows="3">{{ $user->profile }}</textarea>
             </div>
             <input type="submit" value="保存">
         </form>
