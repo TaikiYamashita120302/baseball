@@ -51,8 +51,9 @@ class PostController extends Controller
         return view('posts/show') -> with(['posts' => $posts, 'game' => $game, 'week' => $week]);#$gameのあとにgetつかないのは、web.phpで{game}としているから！ちなみにgamesじゃないのは詳細画面は1ゲームにつき一つだから
     }
     
-    public function create(Game $game){#作成するわけだから現データベースのデータの受け渡しは不要
-        return view('posts/create') -> with(['game' => $game]);
+    public function create(Game $game){
+        $week = week($game->date);//曜日を返す
+        return view('posts/create') -> with(['game' => $game, 'week' => $week]);
     }
     
     public function store(Request $request, Game $game, Post $post){#$requestで一旦ユーザーのデータを受け取る。 $postは空のpostインスタンス 

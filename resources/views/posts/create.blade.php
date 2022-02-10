@@ -1,29 +1,18 @@
 @extends('layouts.app')
-
+@section('title')
+{{ $game->date->format("n月j日") }}({{ $week }}) {{ $game -> team1 -> name}}対{{ $game -> team2 -> name }} 投稿画面
+@endsection
 @section('content')
 
-<!DOCTYPE HTML>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Blog</title>
-    </head>
-    <body>
-        <h1>投稿画面</h1>
-        
-        <form action="/posts/{{ $game->id }}" method="POST">
-            @csrf
-            <div class="body">
-                <h2>投稿</h2>
-                <textarea name="post[body]" placeholder="今日も1日お疲れさまでした。"></textarea>
-            </div>
-            
-            
-            <input type="submit" value="投稿"/>
-        </form>
-        
-        <div class="back">[<a href="/posts/{{ $game->id }}">back</a>]</div>
-    </body>
-</html>
+    <form action="/posts/{{ $game->id }}" method="POST">
+        @csrf
+        <div class="body">
+            <textarea name="post[body]" placeholder="255文字以内で投稿して下さい。"></textarea>
+        </div>
+        <input type="submit" value="投稿"/>
+    </form>
+    
+    <div class="back">[<a href="/posts/{{ $game->id }}">back</a>]</div>
+
 
 @endsection
