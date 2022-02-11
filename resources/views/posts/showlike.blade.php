@@ -5,7 +5,7 @@
 @section('content')
 
 @foreach($users as $user)
-{{ $user -> name }}
+<a href='/other_user/{{ $user->id }}'>{{ $user -> name }}</a>
 
 @endforeach
 

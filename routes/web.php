@@ -34,9 +34,10 @@ Route::group(['middleware' => ['auth']], function(){//ミドルウェアをauth�
     Route::get('/posts/{game}/{post}/showlike', 'PostController@showlike');
     ROUTE::delete('/posts/{post}', 'PostController@delete');
     
-    Route::get('/user', 'UserController@index');
+    Route::get('/user', 'UserController@index');// /userはログインユーザー
     Route::get('/user/{user}/edit', 'UserController@edit');
     Route::put('/user/{user}', 'UserController@update');
+    Route::get('/other_user/{user}', 'UserController@other_index');// /otherほかの人のプロフィール画面、{}の中身は、遷移前のリンクの$の後を入れる（$userなら{{user}}とする)
 });
 
 Auth::routes();

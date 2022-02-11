@@ -21,4 +21,9 @@ class UserController extends Controller
         
         return redirect('/user');
     }
+    
+    public function other_index(User $user){
+        return view('User/other_index')->with(['user' => $user]);
+    }
+    
 }
