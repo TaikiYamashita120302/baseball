@@ -8,6 +8,22 @@ use App\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+function week($date){//$dateは日付、string型 date関数はstring型で返される
+    //指定日の曜日を取得する
+    $week_id = date('w', strtotime($date));
+    //配列を使用し、要素順に(日:0〜土:6)を設定する
+    $week_array = [
+        '日', //0
+        '月', //1
+        '火', //2
+        '水', //3
+        '木', //4
+        '金', //5
+        '土', //6
+    ];
+    
+    return $week_array[$week_id];
+}
 
 class GameController extends Controller
 {
@@ -17,18 +33,19 @@ class GameController extends Controller
         if($search_date==null){
             $search_date = date('Y-m-d');#string型 Y-m-dの表記でカレンダー表示可能
         }
-        return view('games/index') -> with(['games' => $game->getSearchByDate($search_date),'search_date' => $search_date]);#関数をgameモデルに渡す、何を渡すかは名称ではなく順番
+        $week = week($search_date);
+        return view('games/index') -> with(['games' => $game->getSearchByDate($search_date),'search_date' => $search_date,'week'=>$week]);#関数をgameモデルに渡す、何を渡すかは名称ではなく順番
     }
     
     public function show(Game $game){
-        
-        return view('games/show')->with(['game' => $game]);
+        $week = week($game->date);
+        return view('games/show')->with(['game' => $game, 'week'=>$week]);
         
     }
     
-    public function create(Place $place, Team $team){
+    public function create(Place $place, Team $team){#$game は以前入力していたgameデータだから、createには、'Game $game'がない
     
-        return view('games/create')->with(['places' => $place->get()]) -> with(['teams' => $team->get()]);
+        return view('games/create')->with(['places' => $place->get(), 'teams' => $team->get()]);
         
     }
     
@@ -41,9 +58,9 @@ class GameController extends Controller
         
     }
     
-    public function edit(Game $game, Place $place, Team $team){#$game は以前入力していたgameデータだから、createには、'Game $game'がない
-        return view('games/edit')->with(['game' => $game])->with(['places' => $place->get()]) -> with(['teams' => $team->get()]);
-        
+    public function edit(Game $game, Place $place, Team $team){
+        $week = week($game->date);
+        return view('games/edit')->with(['game' => $game,'places' => $place->get(), 'teams' => $team->get(), 'week'=>$week]);
     }
     
     public function update(Request $request, Game $game){

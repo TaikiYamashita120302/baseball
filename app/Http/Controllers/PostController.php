@@ -79,6 +79,12 @@ class PostController extends Controller
         return redirect()->back();
     }
     
+    public function showlike(Game $game, Post $post){
+        $users = $post->likes()->get();//その投稿をいいねしているユーザー
+        
+        return view('posts/showlike') -> with(['users' => $users]);
+    }
+    
     public function delete(Post $post){
         $post->delete();
         return redirect('/user');

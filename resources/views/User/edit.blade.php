@@ -1,13 +1,13 @@
-<!--
-マイページ
--->
+<!--マイページ 編集-->
 
 @extends('layouts.app')
-
+@section('title')
+{{ $user->name }}さん プロフィール変更
+@endsection
 @section('content')
 
-    <body>
-    <h1 class="title">編集画面</h1>
+<body>
+    
     <div class="content">
         <form action="/user/{{ $user->id }}" method="POST">
             @csrf
@@ -24,10 +24,10 @@
         </form>
     </div>
 </body>
-        <p>
-            <a href="/user">
-                マイページへ
-            </a>
-        </p>
+    <p>
+        <a href="/user">
+            マイページへ
+        </a>
+    </p>
 
 @endsection

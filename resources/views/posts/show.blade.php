@@ -36,6 +36,7 @@
         <a href='/posts/{{ $game->id }}/{{ $post->id }}/like' class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post->likes()->count() }}</span></a>
         @endif
         @endforeach
+        <a href='/posts/{{ $game->id }}/{{ $post->id }}/showlike'>いいね欄</a>
     </div>
 
 @endsection

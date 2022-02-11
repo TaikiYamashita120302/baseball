@@ -1,9 +1,9 @@
-<!--
-マイページ
--->
+<!--マイページ-->
 
 @extends('layouts.app')
-
+@section('title')
+{{ $user->name }}さんのマイページ
+@endsection
 @section('content')
 
 <div user>
@@ -37,10 +37,32 @@
                 <form class= "delete" action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
                     @csrf
                     @method('DELETE')
-                    <button type = "submit">
-                        投稿削除
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    投稿削除
                     </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">！！注意！！</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        一度投稿を消すと復元できません。削除しますか？
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">戻る</button>
+                        <button type="submit" class="btn btn-primary">削除</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
                 </form> 
+                
                 
             </div>
         @endforeach

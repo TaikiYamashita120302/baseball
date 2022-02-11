@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function(){//ミドルウェアをauth�
     Route::post('/posts/{game}', 'PostController@store');
     Route::get('/posts/{game}/{post}/like', 'PostController@like');
     Route::get('/posts/{game}/{post}/unlike', 'PostController@unlike');
+    Route::get('/posts/{game}/{post}/showlike', 'PostController@showlike');
     ROUTE::delete('/posts/{post}', 'PostController@delete');
     
     Route::get('/user', 'UserController@index');
