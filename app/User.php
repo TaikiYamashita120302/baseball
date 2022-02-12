@@ -18,6 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password','profile',
+        'user_id', 'follow_id',
     ];
 
     /**
@@ -44,6 +45,45 @@ class User extends Authenticatable
     
     public function likes(){
         return $this->belongsToMany('App\Post','user_post');
+    }
+    
+    //このユーザーがフォローしている人を取得
+    public function followings(){
+        return $this->belongsToMany('App\User', 'user_follow', 'user_id', 'follow_id')->withTimestamps();
+        //withTimestamps()これをつけておけばcreated_atとかが追加されるので便利
+        //第一引数には使用するモデル,第二引数には使用するテーブル名,第三引数にはリレーションを定義しているモデルの外部キー名,第四引数には結合するモデルの外部キー名
+    }
+    
+    //このユーザーをフォローしている人を取得=フォロワー
+    public function followers(){
+        return $this->belongsToMany('App\User', 'user_follow', 'follow_id', 'user_id')->withTimestamps();
+    }
+    
+    public function is_followed_by_auth_user(){
+        
+        
+        $followers = $this->followers()->where('user_id',Auth::id())->get();
+        //dd($follower);
+        //$followers = $this->followers;
+        //dd($followers);
+        foreach($followers as $follower){
+            
+            $id = $follower->id;
+        
+        }
+        dd($id);
+        //dd(Auth::user());
+        //dd($follower);
+        
+        //dd($follower == Auth::user());
+        
+        //dd($follower->id == Auth::id());
+        if($id == Auth::id()){
+            return true;
+        }else{
+            return false;
+        }
+          
     }
     
     public function getOwnPaginateByLimit(int $limit_count = 10){

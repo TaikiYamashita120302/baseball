@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth; //Userクラス定義の前に追加
 
 class UserController extends Controller
 {
@@ -26,4 +27,13 @@ class UserController extends Controller
         return view('User/other_index')->with(['user' => $user]);
     }
     
+    public function follow(User $user){
+        Auth::user()->followings()->attach($user);
+        return redirect()->back();
+    }
+    
+    public function unfollow(User $user){
+        Auth::user()->followings()->detach($user);
+        return redirect()->back();
+    }
 }

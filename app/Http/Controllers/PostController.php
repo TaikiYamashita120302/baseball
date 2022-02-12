@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Post; #忘れがちだからしっかりと記載
 use App\Game;
 use App\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Auth; //Userクラス定義の前に追加
@@ -39,7 +38,7 @@ class PostController extends Controller
         }
         
         $week = week($search_date);
-        
+
         return view('posts/index') -> with(['games' => $game->getSearchByDate($search_date),'search_date' => $search_date, 'week'=>$week]);#関数をgameモデルに渡す、何を渡すかは名称ではなく順番
     }
     
@@ -84,6 +83,7 @@ class PostController extends Controller
         
         return view('posts/showlike') -> with(['users' => $users]);
     }
+    
     
     public function delete(Post $post){
         $post->delete();
