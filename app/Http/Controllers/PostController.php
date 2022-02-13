@@ -81,7 +81,7 @@ class PostController extends Controller
     public function showlike(Game $game, Post $post){
         $users = $post->likes()->get();//その投稿をいいねしているユーザー
         
-        return view('posts/showlike') -> with(['users' => $users]);
+        return view('posts/showlike') -> with(['game' => $game, 'users' => $users]);
     }
     
     

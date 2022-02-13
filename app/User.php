@@ -61,27 +61,12 @@ class User extends Authenticatable
     
     public function is_followed_by_auth_user(){
         
+        $follower = $this->followers()->find(Auth::user()); //findはオブジェクト型で返す オブジェクト型じゃないとid中のカラムは出せない where句はcollection＝配列型で返していたため使わない 
         
-        $followers = $this->followers()->where('user_id',Auth::id())->get();
-        //dd($follower);
-        //$followers = $this->followers;
-        //dd($followers);
-        foreach($followers as $follower){
-            
-            $id = $follower->id;
-        
-        }
-        dd($id);
-        //dd(Auth::user());
-        //dd($follower);
-        
-        //dd($follower == Auth::user());
-        
-        //dd($follower->id == Auth::id());
-        if($id == Auth::id()){
-            return true;
-        }else{
+        if($follower == null){
             return false;
+        }else if($follower->id == Auth::user()->id){
+            return true;
         }
           
     }

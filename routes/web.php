@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth', 'can:admin']], function(){
 //一般ユーザー
     Route::get('/', 'PostController@index')->name('home');//ログイン後の画面 //->middleware('auth'),トップページだから/にする！
     Route::get('/posts/{game}', 'PostController@show');
-Route::group(['middleware' => ['auth']], function(){//ミドルウェアをauthで定義することで、ルーティングがログアウトユーザーから来たら防ぐ<=>ログアウトユーザーのアクセスの制限
+    Route::group(['middleware' => ['auth']], function(){//ミドルウェアをauthで定義することで、ルーティングがログアウトユーザーから来たら防ぐ<=>ログアウトユーザーのアクセスの制限
     
     Route::get('/posts/{game}/create', 'PostController@create');
     Route::post('/posts/{game}', 'PostController@store');
@@ -38,9 +38,11 @@ Route::group(['middleware' => ['auth']], function(){//ミドルウェアをauth�
     Route::get('/user', 'UserController@index');// /userはログインユーザー
     Route::get('/user/{user}/edit', 'UserController@edit');
     Route::put('/user/{user}', 'UserController@update');
-    Route::get('/other_user/{user}', 'UserController@other_index');// /otherほかの人のプロフィール画面、{}の中身は、遷移前のリンクの$の後を入れる（$userなら{{user}}とする)
+    Route::get('/other_user/{user}', 'UserController@other_index');// /otherほかの人のプロフィール画面、{}の中身は、遷移前のリンクの$の後を入れる（$userなら{user}とする)
     Route::get('/other_user/{user}/follow', 'UserController@follow');//フォロー
     Route::get('/other_user/{user}/unfollow', 'UserController@unfollow');//フォロー解除
+    Route::get('/other_user/{user}/showfollow', 'UserController@showfollow');//フォロー
+    Route::get('/other_user/{user}/showfollower', 'UserController@showfollower');//フォロワー
 });
 
 Auth::routes();

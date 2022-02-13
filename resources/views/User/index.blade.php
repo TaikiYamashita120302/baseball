@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 
-<div user>
+<div class="user">
     <p>
         {{ $user->name }}
     </p>
@@ -19,6 +19,16 @@
     <p>
         {{ $user->profile }}
     </p>
+</div>
+
+<div class="follow">
+    <P>
+        <a href='/other_user/{{ $user->id }}/showfollow'>フォロー<span class="badge"></span></a>{{ $user->followings()->count() }}
+    </P>
+    
+    <P>
+        <a href='/other_user/{{ $user->id }}/showfollower'>フォロワー<span class="badge"></span></a>{{ $user->followers()->count() }}
+    </P>
 </div>
 
     <div class="own_posts">

@@ -24,7 +24,12 @@ class UserController extends Controller
     }
     
     public function other_index(User $user){
-        return view('User/other_index')->with(['user' => $user]);
+        if($user == Auth::user()){
+            return view('User/index')->with(['own_posts' => $user->getOwnPaginateBylimit(),'user' => $user->getOwnUser()]);//自分のプロフィールをクリックしたらマイページへ飛ぶ
+        }
+        else{
+            return view('User/other_index')->with(['user' => $user]);
+        }
     }
     
     public function follow(User $user){
@@ -35,5 +40,15 @@ class UserController extends Controller
     public function unfollow(User $user){
         Auth::user()->followings()->detach($user);
         return redirect()->back();
+    }
+    
+    public function showfollow(User $user){
+        $follows = $user->followings()->get();
+        return view('User/showfollow')->with(['user' => $user, 'follows' => $follows]);
+    }
+    
+     public function showfollower(User $user){
+        $followers = $user->followers()->get();
+        return view('User/showfollower')->with(['user' => $user, 'followers' => $followers]);
     }
 }
