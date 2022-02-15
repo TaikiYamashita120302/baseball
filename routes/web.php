@@ -24,9 +24,12 @@ Route::group(['middleware' => ['auth', 'can:admin']], function(){
 
 
 //一般ユーザー
+    Route::get('login/google', 'Auth\LoginController@redirectToGoogle');//Google API
+    Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
+    
     Route::get('/', 'PostController@index')->name('home');//ログイン後の画面 //->middleware('auth'),トップページだから/にする！
     Route::get('/posts/{game}', 'PostController@show');
-    Route::group(['middleware' => ['auth']], function(){//ミドルウェアをauthで定義することで、ルーティングがログアウトユーザーから来たら防ぐ<=>ログアウトユーザーのアクセスの制限
+Route::group(['middleware' => ['auth']], function(){//ミドルウェアをauthで定義することで、ルーティングがログアウトユーザーから来たら防ぐ<=>ログアウトユーザーのアクセスの制限
     
     Route::get('/posts/{game}/create', 'PostController@create');
     Route::post('/posts/{game}', 'PostController@store');
