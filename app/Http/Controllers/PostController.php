@@ -42,11 +42,12 @@ class PostController extends Controller
         return view('posts/index') -> with(['games' => $game->getSearchByDate($search_date),'search_date' => $search_date, 'week'=>$week]);#関数をgameモデルに渡す、何を渡すかは名称ではなく順番
     }
     
-    public function show(Game $game){
-        //持ってきたidをインスタンス化すると、そのgameの全カラムから取得可能。
-        $posts = $game->posts()->get(); // $posts = $game->postsでもとれるが、関数としてちゃんと扱うようにposts()->get()とした方が望ましい。
+    public function show(Game $game){//持ってきたidをインスタンス化すると、そのgameの全カラムから取得可能
         $week = week($game->date);//曜日を返す
-
+        
+        $limit_count = 20; //paginate制限する投稿数
+        $posts = $game->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);// $posts = $game->postsでもとれるが、関数としてちゃんと扱うようにposts()->get()とした方が望ましい。
+        //降順にpaginateして取得,paginateはpaginate+getの意味がある
         return view('posts/show') -> with(['posts' => $posts, 'game' => $game, 'week' => $week]);#$gameのあとにgetつかないのは、web.phpで{game}としているから！ちなみにgamesじゃないのは詳細画面は1ゲームにつき一つだから
     }
     

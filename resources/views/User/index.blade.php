@@ -4,6 +4,9 @@
 @section('title')
 {{ $user->name }}さんのマイページ
 @endsection
+@section('css')
+<link href="/css/users/index.css" rel="stylesheet" media="all">
+@endsection
 @section('content')
 
 <div class="user">
@@ -13,7 +16,9 @@
     
     @if ($user->image_path)
       <!-- 画像を表示 -->
-      <img src="{{ $user->image_path }}">
+      <div class="image">
+         <img src="{{ $user->image_path }}">
+      </div>
     @endif
     <p>
         <a href="/user/{{ $user->id }}/edit">

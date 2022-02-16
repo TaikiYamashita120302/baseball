@@ -32,10 +32,10 @@ class Post extends Model
                 ->get(); #これはgamesテーブルの$search_dateと一致する日付を返してね、ということ
     }
     
-    public function getPaginateByLimit(){
+    public function getPaginateByLimit(int $limit_count=3){
         // updated_atで降順(DESC)に並べたあと、limitで件数制限をかける
-        // return $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
-        return $this::with('user')->orderBy('updated_at', 'DESC')->get();//今は使ってない
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count)->get();
+        //return $this::with('user')->orderBy('updated_at', 'DESC')->get();//今は使ってない
         //paginate($limit_count);
         
     }
@@ -48,13 +48,13 @@ class Post extends Model
   public function is_liked_by_auth_user(){
       $id = Auth::id();
       
-      $likers = array();
+      $likers_id = array();
           $post_users = $this->likes; //ここで選んだ投稿をいいねしている投稿者の情報をリレーションにより取得（複数）
           foreach($post_users as $post_user){
-              array_push($likers, $post_user->id);//投稿者のidを配列へ１つずつ格納
+              array_push($likers_id, $post_user->id);//投稿者のidを配列へ１つずつ格納
             }
             
-    if (in_array($id, $likers)){//in_arrayは第一引数に値、第二引数に配列で、配列に値が入っているかを確かめる関数
+    if (in_array($id, $likers_id)){//in_arrayは第一引数に値、第二引数に配列で、配列に値が入っているかを確かめる関数
         //ログインしているユーザーのIDが、いいねしているユーザーのID群の中にいたら、trueを返す
         return true;
         

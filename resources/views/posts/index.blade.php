@@ -3,7 +3,7 @@
 {{ date('n月j日',strtotime($search_date)) }}({{ $week }})の試合
 @endsection
 @section('css')
-<link href="/css/style.css" rel="stylesheet" media="all">
+<link href="/css/posts/index.css" rel="stylesheet" media="all">
 @endsection
 @section('content')
     

@@ -38,6 +38,10 @@
         <a href='/posts/{{ $game->id }}/{{ $post->id }}/showlike'>いいね欄</a>
         @endforeach
         
+        <div class='paginate'>
+            {{ $posts->links() }}
+        </div>
+
     </div>
 
 @endsection
