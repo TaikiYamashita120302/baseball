@@ -11,6 +11,10 @@
         {{ $user->name }}
     </p>
     
+    @if ($user->image_path)
+      <!-- 画像を表示 -->
+      <img src="{{ $user->image_path }}">
+    @endif
     <p>
         <a href="/user/{{ $user->id }}/edit">
             プロフィールを編集

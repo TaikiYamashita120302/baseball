@@ -9,12 +9,16 @@
 <body>
     
     <div class="content">
-        <form action="/user/{{ $user->id }}" method="POST">
+        <form action="/user/{{ $user->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class='content__name'>
                 <h2>名前</h2>
                 <input type="text" name="user[name]" value="{{ $user->name }}">
+            </div>
+            <div class='content_image'>
+                <h2>写真</h2>
+                <input type="file" name="image">
             </div>
             <div class='content__profile'>
                 <h2>プロフィール文</h2>

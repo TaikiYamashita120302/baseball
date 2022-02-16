@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth; //Userクラス定義の前に追加
+use Storage;
 
 class UserController extends Controller
 {
@@ -17,8 +18,21 @@ class UserController extends Controller
     }
     
     public function update(Request $request, User $user){
+        
+        //s3アップロード開始
+        $image = $request->file('image');
+        // バケットの'baseball_folder/'フォルダへアップロード
+        $path = Storage::disk('s3')->putFile('baseball_folder', $image, 'public');
+        //dd($path);
+        // アップロードした画像のフルパスを取得
+        $image_path = Storage::disk('s3')->url($path);
+        //dd($image_path);
+
         $input_user = $request['user'];
+        $input_user += ['image_path' => $image_path];
+        //dd($input_user);
         $user->fill($input_user)->save();
+        //dd($user);
         
         return redirect('/user');
     }
