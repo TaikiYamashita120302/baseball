@@ -1,0 +1,68 @@
+.main{
+    color:white;
+}
+
+.upper_header{
+    font-size:20px;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    color: #6091d3;/*文字色*/
+    background: #FFF;
+    border: solid 3px #6091d3;/*線*/
+    border-radius: 10px;/*角の丸み*/
+    margin-left: 500px;
+    display: inline-block;
+}
+.game_card p{
+   margin: 0;
+   padding: 0; 
+}
+
+.date_place p{
+    margin: 0;
+    padding: 0; 
+}
+.home_button{
+    background-color: white;
+    border-bottom: solid 2px #003aff;
+    border-right: solid 2px #003aff;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #FFF;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block; 
+}
+.post_button{
+    background-color: white;
+    border-bottom: solid 2px #003aff;
+    border-right: solid 2px #003aff;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #FFF;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block; 
+}
+#user_image{
+	border-radius: 50%;  /*角を丸くする指定*/
+	width: 80px;
+	height: 80px;	
+}
+.user_name{
+    font-size:20px;
+}
+
+.posts{
+    font-size:20px;
+}
+.body{
+    font-size:20px;
+}
+.each_post{
+    border: solid 1px #eeeeee;
+}
+.time_like{
+    text-align:right;
+    margin-right: 10px
+}

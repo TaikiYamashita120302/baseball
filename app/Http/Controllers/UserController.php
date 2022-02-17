@@ -22,12 +22,16 @@ class UserController extends Controller
         //s3アップロード開始
         $image = $request->file('image');
         // バケットの'baseball_folder/'フォルダへアップロード
-        $path = Storage::disk('s3')->putFile('baseball_folder', $image, 'public');
-        //dd($path);
-        // アップロードした画像のフルパスを取得
-        $image_path = Storage::disk('s3')->url($path);
-        //dd($image_path);
-
+        if($image == null){
+            $image_path = null;
+        }else{
+            $path = Storage::disk('s3')->putFile('baseball_folder', $image, 'public');
+            //dd($path);
+            // アップロードした画像のフルパスを取得
+            $image_path = Storage::disk('s3')->url($path);
+            //dd($image_path)
+        }
+        
         $input_user = $request['user'];
         $input_user += ['image_path' => $image_path];
         //dd($input_user);
@@ -42,7 +46,9 @@ class UserController extends Controller
             return view('User/index')->with(['own_posts' => $user->getOwnPaginateBylimit(),'user' => $user->getOwnUser()]);//自分のプロフィールをクリックしたらマイページへ飛ぶ
         }
         else{
-            return view('User/other_index')->with(['user' => $user]);
+            $limit_count = 5;
+            $posts = $user->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);
+            return view('User/other_index')->with(['user' => $user, 'posts'=>$posts]);
         }
     }
     

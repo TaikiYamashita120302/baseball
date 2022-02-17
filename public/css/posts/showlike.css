@@ -1,0 +1,12 @@
+#user_image{
+	border-radius: 50%;  /*角を丸くする指定*/
+	width: 80px;
+	height: 80px;	
+}
+.user_name{
+    font-size:25px;
+}
+
+.back{
+    font-size:20px;
+}

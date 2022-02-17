@@ -28,14 +28,6 @@
     clear: left;
 }
 
-.profile{
-    border: solid 1px #eeeeee;
-}
-
-.each_post{
-    border: solid 1px #eeeeee;
-}
-
 .back{
     background-color: white;
     border-bottom: solid 2px #003aff;
@@ -48,8 +40,4 @@
     margin-top:30px;
     margin-bottom:30px;
     display: inline-block; 
-}
-
-.modal-content{
-    color:black;
 }

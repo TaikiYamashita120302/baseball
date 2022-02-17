@@ -1,0 +1,27 @@
+.upper_header{
+    font-size:20px;
+    text-align:center;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    color: #6091d3;/*文字色*/
+    background: #FFF;
+    border: solid 3px #6091d3;/*線*/
+    border-radius: 10px;/*角の丸み*/
+    margin-bottom: 50px;
+}
+.game_card p{
+   margin: 0;
+   padding: 0; 
+}
+
+.date_place p{
+    margin: 0;
+    padding: 0; 
+}
+
+input[type="submit"] {
+   /* input要素のうちtype属性値がbuttonのものに対して装飾 */
+   background-image: linear-gradient(0deg, #a7d9f5, #eaf6fd); /* グラデーション */
+   border: 1px solid #3c7fb1; /* 枠線 */
+   border-radius: 0.3em;      /* 角丸 */
+}

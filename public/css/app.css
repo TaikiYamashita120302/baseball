@@ -70,9 +70,17 @@ body {
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
-  color: #212529;
+  color: black;
   text-align: left;
-  background-color: #d2691e;
+  background-color: #694e30;
+}
+
+
+
+#user_image{
+	border-radius: 50%;  /*角を丸くする指定*/
+	width: 120px;
+	height: 120px;	
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
