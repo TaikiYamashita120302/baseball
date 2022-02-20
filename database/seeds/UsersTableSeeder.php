@@ -23,19 +23,12 @@ class UsersTableSeeder extends Seeder
         */
         
         DB::table('users') -> insert([
-            'name' => 'ドアラ',
-            'email' => 'doara@gmail.com',
-            'password' => 'doaradoragons',
-            'profile' => 'みなさんはじめまして。ドアラです。',
+            'name' => '管理者',
+            'email' => 'kanrisya@gmail.com',
+            'password' => 'kanrisya',
+            'role' => '100',
             
         ]);
         
-        DB::table('users') -> insert([
-            'name' => 'ジャビット',
-            'email' => 'giants@gmail.com',
-            'password' => 'giantsgiants',
-            'profile' => 'みなさんはじめまして。ジャビットです。',
-            
-        ]);
     }
 }

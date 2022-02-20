@@ -12,10 +12,10 @@ class GamesTableSeeder extends Seeder
     public function run()
     {
         DB::table('games')->insert([
-        'date' => '2022-4-4-5',
-        'time' => '180000',
-        'place_id' => 2,
-        'team_id1' => 2,
+        'date' => '2022-3-25',
+        'time' => '160000',
+        'place_id' => 3,
+        'team_id1' => 3,
         'team_id2' => 2,
     ]);
     }
