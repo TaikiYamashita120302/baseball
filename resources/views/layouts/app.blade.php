@@ -22,11 +22,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('/css/app.css') }}" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet" media="all">
     @yield('css')
     
 </head>
-<body style="background-color:#deb887">
+<body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
