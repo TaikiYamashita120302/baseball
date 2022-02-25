@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users') -> insert([
             'name' => '管理者',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin'),
+            'password' => bcrypt('admin_kanrisya'),//bcryptでパスワードを暗号化 サーバー側からユーザー登録可能
             'role' => '100',
             
         ]);
