@@ -31,15 +31,6 @@ class Post extends Model
                 ->whereDate('date', $search_date)#第一引数がカラムで第二引数が比較したい日付
                 ->get(); #これはgamesテーブルの$search_dateと一致する日付を返してね、ということ
     }
-    
-    public function getPaginateByLimit(int $limit_count=3){
-        // updated_atで降順(DESC)に並べたあと、limitで件数制限をかける
-        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count)->get();
-        //return $this::with('user')->orderBy('updated_at', 'DESC')->get();//今は使ってない
-        //paginate($limit_count);
-        
-    }
-    
     /**
   * リプライにLIKEを付いているかの判定
   *
