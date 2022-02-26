@@ -82,7 +82,8 @@
         </main>
     </div>
     
-    
-    @yield('javascript')
+    <footer>
+        <small>&copy;2022 山下泰生</small>
+    </footer>
 </body>
 </html>
