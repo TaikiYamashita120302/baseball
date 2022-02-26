@@ -34,7 +34,7 @@
     
     <div class="main">
         @foreach($games as $game)
-        <div class='game'>
+        <div class="game">
             <h2>
                 <a href= "/posts/{{ $game->id }}">
                     {{ $game->team1->name }} 対 {{ $game->team2->name }}
@@ -62,6 +62,13 @@
                       </div>
                     </div>
                 @endif
+                
+                <div class="detail">
+                    {{ $game->place->name }}
+                <p>
+                    {{ date("G時i分",strtotime($game->time))}}開始
+                </p>
+                </div>
             </h2>
         </div>
         @endforeach

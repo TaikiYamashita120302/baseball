@@ -17,7 +17,7 @@
 
 .date{
     float:left;
-    padding: 30px 85px 30px 100px;
+    padding: 30px 70px 30px 100px;
 }
 
 .main{
@@ -28,6 +28,10 @@
     font-size:100px;
     text-align:center;
     padding: 20px 110px 20px 0px;
+}
+
+.detail{
+    font-size: 20px
 }
 
 .modal-body{

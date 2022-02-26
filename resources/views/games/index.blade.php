@@ -65,6 +65,12 @@
                           </div>
                         </div>
                     @endif
+                    <div class="detail">
+                        {{ $game->place->name }}
+                    <p>
+                        {{ date("G時i分",strtotime($game->time))}}開始
+                    </p>
+                    </div>
                 </h2>
             </div>
         @endforeach
