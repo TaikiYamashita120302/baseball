@@ -2,17 +2,12 @@
     font-size:16px;
     height:80px;
     background-color: white;
-    color:black;
+    color:blue;
 }
 
 .head_element{
     float:left;
     padding: 30px 85px;
-}
-
-.date{
-    float:left;
-    padding: 30px 85px 30px 100px;
 }
 
 .main{
@@ -22,9 +17,5 @@
 .game{
     font-size:100px;
     text-align:center;
-    padding: 20px 110px 20px 0px;
-}
-
-.modal-body{
-    color:blue;
+    padding: 0px 0px 50px 0px;
 }

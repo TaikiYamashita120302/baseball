@@ -18,7 +18,7 @@
                 <button type="submit" name="search_date" value="{{ date('Y-m-d', strtotime($search_date . '-1 day')) }}">昨日の試合</button>
             </form>
         </div>
-        <div class="head_element">
+        <div class="date">
             {{ date('n月j日',strtotime($search_date)) }}({{ $week }})
         </div>
         <div class="head_element">

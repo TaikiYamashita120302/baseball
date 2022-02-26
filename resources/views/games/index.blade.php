@@ -3,15 +3,13 @@
 管理者側トップページ {{ date('n月j日',strtotime($search_date)) }}({{ $week }})の試合
 @endsection
 @section('css')
-<link href="/css/posts/index.css" rel="stylesheet" media="all">
+<link href="/css/games/index.css" rel="stylesheet" media="all">
 @endsection
 @section('content')
 
-    
-    
     <div class="header">
         <div class='head_element'>
-            <a href='/games/create'>　試合作成</a>
+            <a href='/games/create'>試合作成</a>
         </div> 
         
         <div class="head_element">
