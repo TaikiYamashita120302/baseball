@@ -9,9 +9,7 @@
     
     <div class="header">
         <div class="head_element">
-            <a href="/user">
-                マイページ
-            </a>
+            <a href="/user">マイページ</a>
         </div>
         <div class="head_element">
             <form action="/" method="GET">

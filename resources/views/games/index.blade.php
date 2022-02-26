@@ -8,7 +8,7 @@
 @section('content')
 
     <div class="header">
-        <div class='head_element'>
+        <div class='head_element_left'>
             <a href='/games/create'>試合作成</a>
         </div> 
         
@@ -18,7 +18,7 @@
             </form>
         </div>
         
-        <div class="head_element">
+        <div class="date">
             {{ date('n月j日',strtotime($search_date)) }}({{ $week }})
         </div>
         
@@ -39,7 +39,7 @@
     <div class="main">
         @foreach($games as $game)
             <div class='game'>
-                <h2 class='date'>
+                <h2>
                     <a href= "/games/{{ $game->id }}">
                         {{ $game->team1->name }} 対 {{ $game->team2->name }}
                     </a>
