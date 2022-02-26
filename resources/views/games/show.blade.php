@@ -8,24 +8,26 @@
     </h1>
     
     <div class="content">
-        
         <div class="content__game">
-            <p class='time'>{{ $game -> time }}試合開始</p>
-            <p class='place'>{{ $game -> place -> name }}</p>
-            <p class='team_1対team_2'>
-                {{ $game -> team1 -> name}}対{{ $game -> team2 -> name }}
-            </p>    
+            <h2>
+                <div class='time'>試合開始時刻：{{ date("G時i分",strtotime($game->time)) }}</div>
+                <div class='place'>場所：{{ $game->place->name }}</div>
+                <div class='team_1対team_2'>
+                    対戦カード：{{ $game->team1->name}}対{{ $game->team2->name }}
+                </div>  
+                <div class="reason">
+                    変更点：{{ $game->reason }}
+                </div>
+            </h2>
+            
         </div>
-        
     </div>
     
-    <p class="edit">
+    <div class="edit">
         <a href="/games/{{ $game->id }}/edit">
             試合情報変更
         </a>
-    </p>
-    
-    {{ $game->reason }}
+    </div>
     
     <div class="footer">
         <a href="/games">戻る</a>

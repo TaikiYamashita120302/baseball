@@ -9,8 +9,8 @@ class GamesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+    public function run(){
+        
         DB::table('games')->insert([
         'date' => '2022-3-25',
         'time' => '160000',

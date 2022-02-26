@@ -12,18 +12,12 @@
         
         <div class="upper_header">
             <div class="game_card">
-                <p>
-                    {{ $game -> team1 -> name}}対{{ $game -> team2 -> name }}
-                </p>
+                {{ $game->team1->name}}対{{ $game->team2->name }}
             </div>
-            
             <div class="date_place">
-                <p>
-                    {{ $game->date->format("n月j日") }}({{ $week }})
-                    {{ date("G時i分",strtotime($game->time))}}
-                    {{ $game->place->name }}
-                </p>
-                
+                {{ $game->date->format("n月j日") }}({{ $week }})
+                {{ date("G時i分",strtotime($game->time))}}
+                {{ $game->place->name }}
             </div>
         </div>
         

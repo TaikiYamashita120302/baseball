@@ -11,12 +11,11 @@
     margin-left: 500px;
     display: inline-block;
 }
-.game_card p{
-   margin: 0;
-   padding: 0; 
+.game_card{
+   text-align:center;
 }
 
-.date_place p{
+.date_place{
     margin: 0;
     padding: 0; 
 }
