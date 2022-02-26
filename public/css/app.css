@@ -52,10 +52,6 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-footer{
-  background-color: white;
-}
-
 article,
 aside,
 figcaption,
@@ -69,7 +65,7 @@ section {
   display: block;
 }
 
-body {
+body{
   margin: 0;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
@@ -78,6 +74,15 @@ body {
   color: #212529;
   text-align: left;
   background-color: #deb887;
+  /*フッター固定のため必要*/
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+footer{
+  background-color: white;
+  margin-top: auto;/*フッター固定のため必要*/
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
