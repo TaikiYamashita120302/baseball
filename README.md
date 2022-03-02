@@ -10,7 +10,7 @@ URL:https://ballchat.herokuapp.com/
 
 テストユーザー  
 メールアドレス：test@gmail.com  
-パスワード：test  
+パスワード：testuser  
 # 開発環境
 
 [言語] PHP(Laravel),HTML,CSS,JavaScript  
