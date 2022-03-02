@@ -9,8 +9,8 @@ class TeamsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+    public function run(){
+        /*
         DB::table('teams')->insert([
         'name' => 'オリックス',
         'league' => 'パシフィックリーグ',
@@ -69,6 +69,17 @@ class TeamsTableSeeder extends Seeder
         DB::table('teams')->insert([
         'name' => 'DeNA',
         'league' => 'セントラルリーグ',
+        ]);
+        */
+        
+        DB::table('teams')->insert([
+        'name' => 'セントラルリーグ',
+        'league' => 'セントラルリーグ',
+        ]);
+        
+        DB::table('teams')->insert([
+        'name' => 'パシフィックリーグ',
+        'league' => 'パシフィックリーグ',
         ]);
     
     }

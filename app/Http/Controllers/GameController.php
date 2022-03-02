@@ -25,8 +25,8 @@ function week($date){//$dateは日付、string型 date関数はstring型で返�
     return $week_array[$week_id];
 }
 
-class GameController extends Controller
-{
+class GameController extends Controller{
+    
     public function index(Game $game, Request $request){
         
         $search_date = $request->input('search_date'); #カレンダー、日付検索機能で入力した日付> search_dateはformの名前とリンク
@@ -69,11 +69,15 @@ class GameController extends Controller
         return redirect('/games/' . $game->id);
     }
     
+    public function delete(Game $game){
+        $game->delete();#Modelクラスの関数でdeleteというものが用意されているため、それを用いるだけで簡単に実装できる。
+        return redirect('/games');
+    }
 
     
     /*
     public function delete(Game $game){
-        $game -> delete();#Modelクラスの関数でdeleteというものが用意されているため、それを用いるだけで簡単に実装できる。
+        $game->delete();#Modelクラスの関数でdeleteというものが用意されているため、それを用いるだけで簡単に実装できる。
         return redirect('/games');
         
         (ブレード記載してた文)

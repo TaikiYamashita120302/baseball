@@ -65,6 +65,8 @@
     
         <input type="submit" value="保存">
         </form>
+        
+        
         <div class="footer">
             <a href="/games/{{ $game->id }}">
                 戻る

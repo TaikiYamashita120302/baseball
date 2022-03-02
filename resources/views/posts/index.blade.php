@@ -34,43 +34,63 @@
     
     <div class="main">
         @foreach($games as $game)
-        <div class="game">
-            <h2>
-                <a href= "/posts/{{ $game->id }}">
-                    {{ $game->team1->name }} 対 {{ $game->team2->name }}
-                </a>
-                
-                @if($game->reason)
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    <i class="fa-solid fa-exclamation"></i>
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">お知らせ</h5>
-                          </div>
-                          <div class="modal-body">
-                            {{ $game->reason }}
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            <div class="game">
+                <h2>
+                    <a href= "/posts/{{ $game->id }}">
+                        {{ $game->team1->name }} 対 {{ $game->team2->name }}
+                    </a>
+                    
+                    @if($game->reason)
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$game->id}}_1">
+                        <i class="fa-solid fa-exclamation"></i>
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop{{$game->id}}_1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">お知らせ</h5>
+                              </div>
+                              <div class="modal-body">
+                                {{ $game->reason }}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                    @endif
+                    
+                    <div class="detail">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$game->id}}_2">
+                        {{ $game->place->name }}
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop{{$game->id}}_2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">場所</h5>
+                              </div>
+                              <div class="modal-body">
+                                {{ $game->place->prefecture }}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <p>
+                            {{ date("G時i分",strtotime($game->time)) }}開始
+                        </p>
                     </div>
-                @endif
-                
-                <div class="detail">
-                    {{ $game->place->name }}
-                <p>
-                    {{ date("G時i分",strtotime($game->time))}}開始
-                </p>
-                </div>
-            </h2>
-        </div>
+                </h2>
+            </div>
         @endforeach
     </div>
     
