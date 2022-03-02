@@ -1,78 +1,54 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# BallChat
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+　BallChatはプロ野球観戦用掲示板です。2022年のプロ野球全試合それぞれに関して、思いのままの投稿をすることができます。
+また、ユーザー登録機能、フォロー機能、いいね機能を搭載しているため、他のユーザーを通じて楽しむことができます。  
+<img width="1091" alt="2022-02-27 (2)" src="https://user-images.githubusercontent.com/94275435/155868361-50bdf660-0581-41b5-b55e-8ccefa27f264.png">
 
-## About Laravel
+このように試合の一覧があり、試合を選択するとその試合に関して投稿することができます。  
+※試合はテストデータ用のため架空の試合情報です。  
+URL:https://ballchat.herokuapp.com/  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+テストユーザー  
+メールアドレス：test@gmail.com  
+パスワード：test  
+# 開発環境
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[言語] PHP(Laravel),HTML,CSS,JavaScript  
+[その他] AWS,MYSQL
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# 特徴的な機能一覧
 
-## Learning Laravel
+〇試合投稿機能(管理者サイド)  
+・機能詳細：管理者側から試合投稿、編集削除が可能。  
+・作成背景：雨天中止などで試合がなくなってしまった時のために、変更できるようにするため。  
+・工夫点：雨天中止などを知らせるポップアップ画面搭載。  
+  
+〇画像登録機能(AWS,S3)  
+・機能詳細：マイページにおけるトップ画像を登録できるようにした。  
+・作成背景：ユーザーの独自性がより上がると感じたから。  
+・工夫点：AWSのS3を経由することで画像のアップロードが可能になった。  
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+〇フォロー機能   
+・機能詳細：他ユーザーをフォローすることが可能。  
+・作成背景：フォロー機能があった方がより楽しんでもらえると思ったため。  
+・工夫点：フォローフォロワー閲覧画面があり、そのページから他ユーザーのプロフィール画面へ飛ぶことができる。  
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+〇いいね機能   
+・機能詳細：他ユーザーの投稿にいいねをすることが可能。  
+・作成背景：いいねをすることができたほうが、ユーザーが投稿したくなる可能性が高いと感じたから。  
+・工夫点：いいねしたユーザーを閲覧でき、そこからプロフィール画面へ飛ぶことができる。  
 
-## Laravel Sponsors
+〇グーグルログイン機能（外部API)  
+・機能詳細：Googleアカウントでログインできる機能。  
+・作成背景：新たにアカウントを作らなくても、Googleアカウントでログインすることができれば使い勝手が良いと感じたから。  
+・工夫点：ログイン画面の真下にボタンを搭載することで、どこからログインすればよいか明確になっている。  
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# 備考
+ユーザー登録をしないと、試合一覧とその投稿しか閲覧することができませんが、ユーザー登録をすれば、投稿作成、フォローやいいねをすることが可能です。  
+ユーザー登録はメールアドレスまたはGoogleアカウントで登録していただきます。  
+各ユーザー間でダイレクトメッセージをすることはできません。  
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+# 作者
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* 作成者：山下泰生
+* E-mail：taikinniku03@gmail.com
